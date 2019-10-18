@@ -19,13 +19,13 @@ Back-End
 - 💾 Mongoose — MongoDB object modeling tool 
 - 🚫 Cors — Cross-Origin Resource-Sharing
 - 📂 Multer — Multer is for file uploads
-- 📲 socket.io — Realtime application framework 
+- 📲 socket.io — Realtime application framework (em breve)
   
 
 Front-End
 
 - ⚛️ ReactJs — A JavaScript library for building user interfaces
-- 📲 socket.io — Realtime application framework 
+- 📲 socket.io — Realtime application framework (em breve) 
 - 🌎 Axios — Promise based HTTP client for the browser and node.js
 
 
