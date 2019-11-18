@@ -28,6 +28,12 @@ Front-End
 - 📲 socket.io — Realtime application framework (em breve) 
 - 🌎 Axios — Promise based HTTP client for the browser and node.js
 
+Mobile
+
+- ⚛️ ReactNative — A framework for building native apps using React
+- 📲 socket.io — Realtime application framework 
+- 🌎 Axios — Promise based HTTP client for the browser and node.js
+
 
 ## ✋🏻 Pré-requisitos
 
