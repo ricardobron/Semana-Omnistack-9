@@ -9,6 +9,19 @@ mongoose.connect('mongodb+srv://ricardoslv688:GnEj55fw1jmCMOhp@cluster0-89ka9.mo
     useUnifiedTopology: true
 })
 
+io.on('connection', socket =>{
+    const { user_id } = socket.handshake.query;
+   
+    connectedUsers[user_id] = socket.id;
+});
+
+app.use((req, res, next) => {
+    req.io = io; 
+    req.connectedUsers = connectedUsers;
+
+    return next();
+});
+
 const app = express()
 app.use(cors())
 //app.use(cors({ origin: 'http://localhost:3333'}))
