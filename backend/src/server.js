@@ -1,13 +1,25 @@
-const express = require('express')
-const routes = require('./routes')
-const mongoose = require('mongoose')
-const cors = require('cors')
-const path = require('path')
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
 
+const socketio = require('socket.io');
+const http = require('http');
+
+const routes = require('./routes');//importar todas as rotas
+
+const app = express();
+const server = http.Server(app);
+const io = socketio(server);
+
+const connectedUsers = {};
+
+//conectar DB ao servidor
 mongoose.connect('mongodb+srv://ricardoslv688:GnEj55fw1jmCMOhp@cluster0-89ka9.mongodb.net/aircnc?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+
 
 io.on('connection', socket =>{
     const { user_id } = socket.handshake.query;
@@ -21,13 +33,14 @@ app.use((req, res, next) => {
 
     return next();
 });
+//metodos de acesso a rotas GET, POST, PUT, DELETE
+//GET req.query = Acessar query parament(para filtros)
+//PUT/DELETE req.params = Acessar rout params (para edição, delete)
+//POST req.body = Acessar corpo da requisição (para ciração, edição)
+app.use(cors());
+app.use(express.json());//Express ler em json
+app.use('/files', express.static(path.resolve(__dirname,'..','uploads')));
+app.use(routes);
 
-const app = express()
-app.use(cors())
-//app.use(cors({ origin: 'http://localhost:3333'}))
-app.use(express.json())
-app.use('/files', express.static(path.resolve(__dirname, '..', 'uploads')))
-app.use(routes)
-
-
-app.listen(3333) 
+-
+server.listen(3333);  
